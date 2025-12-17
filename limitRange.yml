@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: limitRange
+Metadata:
+  name: pod-limit
+  namespace: xgoods
+spec:
+  limits:
+    - type: Container
+      max:  
+        cpu: "500m"
+        memory: "512Mi"
+      min:
+        cpu: "50m"
+        memory: "64Mi"
+      default:          # The Limit (Max allowed burst)
+        cpu: "150m"     # 15% of a CPU
+        memory: "128Mi" # 128 MB RAM
+      defaultRequest:   # The Request (Guaranteed minimum)
+        cpu: "50m"      # 5% of a CPU (Very small!)
+        memory: "64Mi"  # 64 MB RAM
