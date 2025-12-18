@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: xgoods-backend-service
+  namespace: xgoods
+spec:
+  selector:
+    project: xgoods
+    component: backend
+    environment: development
+  ports:
+  - protocol: TCP
+    targetPort: 80
+    port: 80 #service port
+---
+apiVersion: v1
+kind: Pod             
+metadata:             # FIXED: Correct spelling (was 'metadta')
+  name: backend
+  namespace: xgoods   # Best practice: Put namespace inside the file
+  labels:
+    project: xgoods
+    component: backend
+    environment: development
+spec:
+  containers:
+    - name: nginx
+      image: nginx
